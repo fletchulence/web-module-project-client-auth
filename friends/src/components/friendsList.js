@@ -8,6 +8,7 @@ class friendsList extends Component {
    
    componentDidMount(){
       this.getFriends()
+      console.log(this.state.friends)
    };
    
    getFriends = () =>{
@@ -18,7 +19,7 @@ class friendsList extends Component {
          }
       })
          .then(res=>{
-            //res.data.data
+            console.log(res.data.data)
             this.setState({
             ...this.state,
             friends: res.data.data
@@ -30,14 +31,19 @@ class friendsList extends Component {
    }
    
    render() {
-      console.log(this.state.friends)
+      console.log(this.friends)
       return (
          <div>
+            <h2>Current Friends</h2>
+            <div>
             {this.state.friends.map((friend, index)=>{
             return(
-               {friend}
+               <p>
+                  {friend}
+               </p>
             )
             })}
+            </div>
          </div>
       )
    }

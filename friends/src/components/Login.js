@@ -8,7 +8,8 @@ class Login extends Component{
      credentials:{
        username: '',
        password: '',
-     }
+     },
+     token: '',
    }
  
    handleChange=(e)=>{
@@ -27,7 +28,10 @@ class Login extends Component{
      axios.post('http://localhost:5002/api/login', this.state.credentials )
        .then(res=>{
          console.log(res)
-         localStorage.setItem('token', res.data.payload)
+         this.setState({
+            ...this.state,
+            token: localStorage.setItem('token', res.data.payload)
+         })
          // navigate to the friendsList component
          this.props.history.push('/protected')
        })
