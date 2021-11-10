@@ -16,7 +16,8 @@ class Login extends Component{
        credentials: {
          ...this.state.credentials,
          [e.target.name]: e.target.value
-       }
+       },
+       error: '',
      })
      // console.log(this.state.credentials)
    }
@@ -27,10 +28,14 @@ class Login extends Component{
        .then(res=>{
          console.log(res)
          localStorage.setItem('token', res.data.payload)
-         
+         // navigate to the friendsList component
+         this.props.history.push('/protected')
        })
        .catch(err=>{
-         console.error(err)
+         console.error(err.response)
+         this.setState({
+            error: err.response.data.error
+         })
        })
    }
  
@@ -55,6 +60,7 @@ class Login extends Component{
      />
      <input type='submit'/>
    </form>
+   <p style={{ color: 'red'}}>{this.state.error}</p>
    </>
    )
    }
