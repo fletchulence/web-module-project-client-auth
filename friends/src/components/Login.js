@@ -1,6 +1,7 @@
-import React, { useHistory, Component } from 'react';
+import React, { /* useHistory, */ Component } from 'react';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
+import { axiosWithAuth } from './../utils/axiosWithAuth';
 
 class Login extends Component{
    // you need to have this as a class component s.t. there can be a state
@@ -33,7 +34,10 @@ class Login extends Component{
          this.setState({
             ...this.state,
             //!remember what name you give it bc you will need to pull it out of localStorage as a string
-            token: localStorage.setItem('token', res.data.payload)
+            token: localStorage.setItem('token', res.data.payload),
+            // credentials:{
+            //   username: this.state
+            // }
          })
          //* navigate user to the friendsList component or whatever the protected area is
          this.props.history.push('/friends')
@@ -52,6 +56,7 @@ class Login extends Component{
      <>
    <h2>Login</h2>
    <form onSubmit={this.handleSubmit}>
+     <label>
      <input
        type='text'
        name='username'
@@ -59,6 +64,8 @@ class Login extends Component{
        value={this.state.credentials.username}
        onChange={this.handleChange}
        />
+       </label>
+       <label>
      <input
        type='text'
        name='password'
@@ -66,6 +73,7 @@ class Login extends Component{
        placeholder='password'
        onChange={this.handleChange}
      />
+     </label>
      <input type='submit'/>
    </form>
    {/**below is showing your error in red underneath the form inputs**/}

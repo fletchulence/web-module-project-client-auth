@@ -27,7 +27,7 @@ function App() {
       <Switch>
         <Route path='/login' component={Login}/>
         <Route path='/logout' component={Logout}/>
-        <PrivateRoute path='/friends' component={FriendsList}/>
+        <PrivateRoute path='/friends' component={FriendsList}></PrivateRoute>
         {/* <Route path='/newFriend' component={NewFriend}/> */}
         <Route path='/' component={Header}/>
       </Switch>
