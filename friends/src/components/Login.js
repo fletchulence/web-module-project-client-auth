@@ -25,18 +25,21 @@ class Login extends Component{
    
    handleSubmit=(e)=>{
      e.preventDefault();
+     //!this.state.credentials hold the username and password from before
      axios.post('http://localhost:5002/api/login', this.state.credentials )
        .then(res=>{
          console.log(res)
          this.setState({
             ...this.state,
+            //!remember what name you give it bc you will need to pull it out of localStorage as a string
             token: localStorage.setItem('token', res.data.payload)
          })
-         // navigate to the friendsList component
-         this.props.history.push('/protected')
+         //* navigate user to the friendsList component or whatever the protected area is
+         this.props.history.push('/friends')
        })
        .catch(err=>{
          console.error(err.response)
+         //! this is our error flow for the WRONG credentials to show up
          this.setState({
             error: err.response.data.error
          })
@@ -64,6 +67,7 @@ class Login extends Component{
      />
      <input type='submit'/>
    </form>
+   {/**below is showing your error in red underneath the form inputs**/}
    <p style={{ color: 'red'}}>{this.state.error}</p>
    </>
    )

@@ -11,11 +11,11 @@ import FriendsList from './components/friendsList';
 const Logout = () =>{
   return (
     <div>
-      
+      <p> Thanks for visiting my site. </p>
+      <p> Would you like to <Link to='/login'>login</Link> again?</p>
     </div>
   )
 }
-
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path='/login' component={Login}/>
         <Route path='/logout' component={Logout}/>
         <PrivateRoute path='/friends' component={FriendsList}/>
+        <Route path='/newFriend' component={NewFriend}/>
         <Route path='/' component={Header}/>
       </Switch>
     </Router>
