@@ -16,7 +16,7 @@ class friendsList extends Component {
    getFriends = () =>{
       //! fetch the friends ONLY if user is authenticated
       // const token = localStorage.getItem('token')
-      axiosWithAuth().get('http://localhost:5002/api/friends', this.friends
+      axiosWithAuth().get('http://localhost:5002/api/friends'
       
       //! this is your config object -- being brought to you by the axiosWithAuth */
       // {
@@ -26,11 +26,11 @@ class friendsList extends Component {
       // }
       )
          .then(res=>{
-            console.log(res)
-            // this.setState({
-            // ...this.state,
-            // friends: res.data
-            // })
+            console.log(res.data)
+            this.setState({
+            ...this.state,
+            friends: res.data
+            })
          })
          .catch(err=>{
             console.error(err)
@@ -38,7 +38,7 @@ class friendsList extends Component {
    }
    
    render() {
-      console.log(this.state.friends)
+      // console.log(this.state.friends)
       return (
          <div>
             <h2>Current Friends</h2>

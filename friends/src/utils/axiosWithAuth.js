@@ -5,7 +5,7 @@ const axiosWithAuth = () =>{
    //? creates an instance of axios with global config setup
     return axios.create({
       headers: {
-         Authotization: token
+         Authorization: token
       }
       // baseUrl: 'http://localhost:5002'
    });
